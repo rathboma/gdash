@@ -95,8 +95,9 @@ class GDash
 
       graphs = list_graphs
 
-      graphs.keys.sort.map do |graph_name|
-        {:name => graph_name, 
+      graphs.values.sort.map do |graph_path|
+        graph_name = File.basename(graph_path, ".graph")
+        {:name => graph_name,
           :graphite => GraphiteGraph.new(graphs[graph_name], overrides)}
       end
     end
